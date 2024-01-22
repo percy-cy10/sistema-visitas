@@ -71,10 +71,10 @@ This is a Laravel application for managing visits to a registry. It allows users
 Once the development server is running, you can access the application at http://localhost:8000.
 
 -   Admin Credentials:
-    -   email: admin@admin.com
+    -   email: admin@otic.com
     -   password: password
 -   Personero Credentials:
-    -   email: personero@personero.com
+    -   email: personero@otic.com
     -   password: password
 
 ### License
