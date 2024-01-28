@@ -21,7 +21,7 @@ class OficinasController extends Controller
         $sedes = Sedes::all();
         // dd($oficinas);
         return view('modulos.agregar-oficina', ['oficinas' => $oficinas, 'sedes' => $sedes]);
-        
+
     }
 
     /**
@@ -42,14 +42,14 @@ class OficinasController extends Controller
             'nombre_oficina' => 'required',
             'piso' => 'required',
             'sede_id' => 'required',
-            
+
         ], [
             'nombre_oficina.required' => 'El campo Oficina es obligatorio.',
             'piso.required' => 'El campo Piso es obligatorio.',
             'sede_id.required' => 'El campo Sede es obligatorio.',
-            
+
         ]);
-        
+
         $oficina = new Oficinas();
         $oficina->nombre_oficina = $request->input('nombre_oficina');
         $oficina->piso = $request->input('piso');
@@ -88,8 +88,8 @@ class OficinasController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'oficina' => 'required|max:30',
-            'piso' => 'required|integer|max:3',
+            'oficina' => 'required',
+            'piso' => 'required|integer',
             'sede_id' => 'required',
         ], [
             'oficina.required' => 'El campo Oficina es obligatorio.',

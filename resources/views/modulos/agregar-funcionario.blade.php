@@ -21,7 +21,7 @@
                         </span>
                     </div>
                     <script>
-                    
+
                     const successMessage = document.getElementById('success-message');
 
                     if (successMessage) {
@@ -40,7 +40,7 @@
                         </span>
                     </div>
                     <script>
-                    
+
                     const errorMessage = document.getElementById('error-message');
 
                     if (errorMessage) {
@@ -51,7 +51,7 @@
                 </script>
                 @endif
                 <form class="" method="POST" action="{{ route('agregar-funcionario.store') }}" id="formRegistrarFuncionario">
-                    @csrf    
+                    @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="dni">
@@ -85,7 +85,7 @@
                                 <input type="text" id="cargo" class="block appearance-none w-full bg-gray-200 border border-black-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ingrese el Cargo"  name="cargo" required>
                             </div>
                             <div>
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="oficina">
                                     OFICINA:
                                 </label>
@@ -141,13 +141,13 @@
                                         <a href="{{ route('agregar-funcionario.edit', $funcionarios->id) }}" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                             Editar
                                         </a>
-                                        {{-- <form action="{{ route('agregar-funcionario.destroy', $funcionarios->id) }}" method="POST">
+                                        <form action="{{ route('agregar-funcionario.destroy', $funcionarios->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                                 Eliminar
                                             </button>
-                                        </form> --}}
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -157,7 +157,7 @@
                     </table>
                 </div>
 
-                      
+
                 </div>
             </div>
         </div>
@@ -176,7 +176,7 @@
                     "first":      "Primera",
                     "last":       "Última ",
                     "next":       "Siguiente",
-                    "previous":   "Anterior" ,                  
+                    "previous":   "Anterior" ,
                 },
                 "lengthMenu": "MOSTRAR _MENU_",
                 "emptyTable": "No hay datos disponibles en la tabla",
@@ -187,7 +187,7 @@
             } );
                 addEventListener("load", (event) => {
                     document.getElementById('formRegistrarVisita').addEventListener('submit', () => {
-                        
+
                     })
                 });
 
@@ -216,5 +216,5 @@
             </script>
         @endif
 
-   
+
     </x-app-layout>

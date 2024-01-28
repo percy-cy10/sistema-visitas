@@ -13,7 +13,7 @@
                     </div>
 
                     <table id="tabla01" class="display table table-striped table-bordered stripe hover font-sans" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                       
+
                         <div class=" w-full flex justify-center mb-6">
                             <div class="w-96 flex flex-col items-center">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personero_id">
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div date-rangepicker class=" md:flex items-center gap-3 justify-center ">
-                            
+
                             <span class=" text-gray-600 font-extrabold ">DESDE: </span>
                             <div class="relative ">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -38,21 +38,25 @@
                                 <input type="text" id="max" name="max" class="md:w-2/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Fecha final">
                             </div>
                         </div>
-                        <div class="relative flex items-center py-9">                            
+                        <div class="relative flex items-center py-9">
                         </div>
-                       
+
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-white">
                             <tr>
                                 <th>N.</th>
-                                <th>Fecha de Registro</th>
+                                <th>Visitante</th>
+
                                 <th>Fecha de Visita</th>
                                 <th>Entidad visitada </th>
-                                <th>Visitante</th>
-                                <th>Documento del visitante</th>
+
+
                                 <th>Entidad del visitante</th>
                                 <th>Funcionario visitado</th>
+
                                 <th>Hora Ingreso</th>
                                 <th>Hora Salida</th>
+                                <th>Fecha de Registro</th>
+                                <th>Documento del visitante</th>
                                 <th>Motivo</th>
                                 <th>Lugar específico</th>
                                 <th>Observación</th>
@@ -62,23 +66,27 @@
                             @foreach($reportes as $id=>$reporte)
                                 <tr>
                                     <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$id+1}}</td>
-                                    <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{ \Carbon\Carbon::parse($reporte->fecha_y_hora)->format('Y-m-d') }}</td>   
+                                    <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->nombres}} {{$reporte->apellidos}}</td>
+
                                     <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{ \Carbon\Carbon::parse($reporte->fecha_y_hora_salida)->format('Y-m-d') }}</td>
                                     <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->oficina->nombre_oficina}}</td>
-                                    <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->nombres}} {{$reporte->apellidos}}</td>
-                                    <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->dni}}</td>
+
+
                                     <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->empresa}}</td>
-                                    <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->funcionario->nombre ?? ""}} {{$reporte->funcionario->apellido_paterno ?? ""}} {{$reporte->funcionario->apellido_materno ?? ""}}   
-                                    
+                                    <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->funcionario->nombre ?? ""}} {{$reporte->funcionario->apellido_paterno ?? ""}} {{$reporte->funcionario->apellido_materno ?? ""}}
+
                                         <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black uppercase">{{ \Carbon\Carbon::parse($reporte->fecha_y_hora)->format('H:i:s') }}</td>
                                         <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black capitalize">{{ \Carbon\Carbon::parse($reporte->fecha_y_hora_salida)->format('H:i:s') }}</td>
                                     </td>
-                                    
+
+                                    <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{ \Carbon\Carbon::parse($reporte->fecha_y_hora)->format('Y-m-d') }}</td>
+                                    <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->dni}}</td>
+
                                     <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">{{$reporte->motivo}}</td>
                                     <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black capitalize">{{$reporte->oficina->sede->nombre_sede}} {{$reporte->oficina->piso}}</td>
                                     <td class="text-xs px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black uppercase">{{$reporte->observaciones}}</td>
 
-                                    
+
                                 </tr>
                             @endforeach
                         </tbody>
@@ -87,12 +95,12 @@
 
 
 
-                  
-                    
+
+
                 </div>
             </div>
         </div>
-        
+
         <!-- jQuery -->
 
 
@@ -111,9 +119,9 @@
         <script src="plugins/js/buttons.print.min.js"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script> -->
         <script>
-            
+
             var minDate, maxDate;
- 
+
 
             // $.fn.dataTable.ext.search.push(
             //     function( settings, data, dataIndex ) {
@@ -121,7 +129,7 @@
             //         min = new Date(min);
             //         min.setDate(min.getDate() + 1);
             //         min.setHours(00);
-                    
+
             //         var max = maxDate.val();
             //         max = new Date(max);
             //         max.setDate(max.getDate() + 1);
@@ -135,10 +143,10 @@
 
             //         console.log(min, max);
             //         console.log(new Date( data[2] ) <= max)
-                   
+
 
             //         var date = new Date( data[2] );
-            
+
             //         if (
             //             ( min === null && max === null ) ||
             //             ( min === null && date <= max ) ||
@@ -186,10 +194,10 @@
 );
 
 
-            
+
             $(document).ready(async function() {
-                
-               
+
+
                 minDate = new DateTime($('#min'), {
                     format:'YYYY-MM-DD' ,
                     useCurrent: false
@@ -199,7 +207,7 @@
                     useCurrent: false
                 });
 
-          
+
                 var table = $('#tabla01').DataTable({
                     responsive: true,
                     "language": {
@@ -207,7 +215,7 @@
                         "first":      "Primera",
                         "last":       "Última ",
                         "next":       "Siguiente",
-                        "previous":   "Anterior" ,                  
+                        "previous":   "Anterior" ,
                     },
                     "lengthMenu": "MOSTRAR _MENU_",
                     "emptyTable": "No hay datos disponibles en la tabla",
@@ -220,7 +228,7 @@
                         {
                             extend: 'pdf',
                             orientation: 'landscape',  // Establece la orientación en horizontal
-                            
+
                         },
                         {
                             extend: 'print',
@@ -229,17 +237,17 @@
                         }
                     ]
                 });
-                    
+
                 table.buttons( 0, null ).container().prependTo(
                     table.table().container()
                 );
-                        
-   
-                
 
-                
+
+
+
+
                 $('#min, #max').on('change', function () {
-                   
+
                     table.draw();
                 });
 

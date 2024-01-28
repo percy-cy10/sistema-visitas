@@ -20,7 +20,7 @@
                         </span>
                     </div>
                     <script>
-                    
+
                     const successMessage = document.getElementById('success-message');
 
                     if (successMessage) {
@@ -39,7 +39,7 @@
                         </span>
                     </div>
                     <script>
-                    
+
                     const errorMessage = document.getElementById('error-message');
 
                     if (errorMessage) {
@@ -50,7 +50,7 @@
                 </script>
                 @endif
                 <form class="" method="POST" action="{{ route('agregar-sedes.store') }}">
-                    @csrf    
+                    @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-3">
                             <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personero_id">
@@ -93,13 +93,13 @@
                                     <a href="{{ route('agregar-sedes.edit', $sede->id) }}" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Editar
                                     </a>
-                                    {{-- <form action="{{ route('agregar-sedes.destroy', $sede->id) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('agregar-sedes.destroy', $sede->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                             Eliminar
                                         </button>
-                                    </form> --}}
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -107,8 +107,8 @@
 
                     </table>
                 </div>
-                 
-                    
+
+
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
                     "first":      "Primera",
                     "last":       "Última ",
                     "next":       "Siguiente",
-                    "previous":   "Anterior" ,                  
+                    "previous":   "Anterior" ,
                 },
                 "lengthMenu": "MOSTRAR _MENU_",
                 "emptyTable": "No hay datos disponibles en la tabla",

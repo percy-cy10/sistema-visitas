@@ -13,7 +13,7 @@
                     </div>
 
 
-                    
+
                     <!-- function hello -->
                     @if(session('message'))
                         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert" id="success-message">
@@ -42,7 +42,7 @@
                             </span>
                         </div>
                         <script>
-                        
+
                         const errorMessage = document.getElementById('error-message');
 
                         if (errorMessage) {
@@ -53,10 +53,10 @@
                     </script>
                     @endif
                     <form class="" method="POST" action="{{ route('registrar-visita.store') }}" id="formRegistrarVisita" >
-                        @csrf    
+                        @csrf
                         <div class="flex flex-col gap-6 ">
                            @livewire('registrar-visita2', ['oficinas' => $oficinas, 'sedes' => $sedes, 'funcionario'=>$funcionario])
-                            
+
                             <div class="flex flex-col">
                                 <button class="mb-4 mx-auto bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" >
                                     GUARDAR
@@ -64,13 +64,13 @@
                             </div>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
     </nav>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <!-- @if(session('message'))
         <script>
             Swal.fire({
@@ -84,10 +84,10 @@
     @endif -->
 
     <script>
-        
+
         addEventListener("load", (event) => {
             document.getElementById('formRegistrarVisita').addEventListener('submit', () => {
-                
+
             })
 
             let dni = document.getElementById('dni');

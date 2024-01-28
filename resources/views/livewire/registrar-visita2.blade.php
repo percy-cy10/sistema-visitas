@@ -70,6 +70,7 @@
             <div class="">
                 <input type="hidden" name="user-name" wire:model="nombreFuncionario">
                 <input type="hidden" name="funcionario" wire:model="funcionarioId">
+
                 <x-lwa::autocomplete class="appearance-none uppercase block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" style="width: 100%;" wire:model-text="nombreFuncionario" wire:model-id="funcionarioId" wire:model-results="funcionarios" :options="[
                         'text'=> 'nombre',
                         'allow-new'=> 'false',
@@ -183,6 +184,5 @@
             }
         });
     </script>
-
 
 </div>

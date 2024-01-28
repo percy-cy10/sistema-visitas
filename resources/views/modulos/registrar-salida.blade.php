@@ -9,7 +9,7 @@
                             VISITAS EN CURSO
                             @else
                             REGISTAR SU SALIDA Y ALGUNA OBSERVACIÓN
-                            @endrole    
+                            @endrole
                         </strong></h2>
                     </div>
                     <div class="pb-10 relative flex items-center">
@@ -46,7 +46,7 @@
                                 </span>
                             </div>
                             <script>
-                            
+
                             const errorMessage = document.getElementById('error-message');
 
                             if (errorMessage) {
@@ -56,12 +56,12 @@
                             }
                         </script>
                         @endif
-                
+
                     </div>
                     @if(Auth::user()->roles->first()->name  != 'supervisor')
                         <form class="" method="POST" action="{{ route('registrar-salida.store', ) }}">
-                            @csrf   
-                            
+                            @csrf
+
                                 <div class=" w-full flex justify-center mb-6">
                                     <div class="w-96 flex flex-col items-center">
                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="personero_id">
@@ -72,22 +72,21 @@
                                 </div>
                         </form>
                     @endif
-                  
-                   
-                    @if(session('message')) 
+                
+                    @if(session('message'))
                     @livewire('tabla-registrar-salida',  ['reportes' => $reportes, 'message'=> session('message')])
                 @else
                     @livewire('tabla-registrar-salida',  ['reportes' => $reportes])
                 @endif
-                
-                
+
+
                     </div>
 
-                
-                
 
-                    
-          
+
+
+
+
                 </div>
             </div>
         </div>
@@ -107,7 +106,7 @@
                     "first":      "Primera",
                     "last":       "Última ",
                     "next":       "Siguiente",
-                    "previous":   "Anterior" ,                  
+                    "previous":   "Anterior" ,
                 },
                 "lengthMenu": "MOSTRAR _MENU_",
                 "emptyTable": "No hay datos disponibles en la tabla",
@@ -115,7 +114,7 @@
             }
                 // buttons: [ 'copy', 'excel', 'pdf', 'print', 'colvis' ]
             } );
-        
+
             $('select').css('width','4rem');
         } );
     </script>

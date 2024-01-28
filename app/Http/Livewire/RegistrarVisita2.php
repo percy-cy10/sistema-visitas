@@ -55,7 +55,7 @@ class RegistrarVisita2 extends Component
             ]);
 
             if ($this->dni != '') {
-                $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InBlcmN5LmN5MTBAZ21haWwuY29tIn0.msP8M-MjQy_BlZgTL8gBgqdTkR2isWL1f6CQK24XqH4';
+                $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InBlcmN5Y29uZG9yaTExeUBnbWFpbC5jb20ifQ.37MzpAZnxLUBidAfPfnTV5E3ex1T9cr8PHL2oHTDl7k';
 
                 $response = Http::get('https://dniruc.apisperu.com/api/v1/dni/' . $this->dni, [
                     'token' => $token,
@@ -116,19 +116,26 @@ class RegistrarVisita2 extends Component
             if (is_null($this->nombreFuncionario) || $this->nombreFuncionario === '') {
                 throw new Exception('Error-1');
             }
-            $this->getUsers();
-            date_default_timezone_set("America/Lima");
-            $nombres_ = $this->seperar($this->nombreFuncionario);
-            $funcionarioName = Funcionario::where('nombre', $nombres_[0])->where('apellido_paterno', $nombres_[1])->where('apellido_materno', $nombres_[2])->first();
-            //$funcionarioName = Funcionario::where('nombre', $this->nombreFuncionario)->first();
-            $oficinaName = Oficinas::where('id', $funcionarioName?->oficina)->first();
 
-            if (isset($funcionarioName)) {
+            // Utilizar la función de separación para obtener los nombres y apellidos
+            $nombres_ = $this->seperar($this->nombreFuncionario);
+
+            // Buscar al funcionario por nombres y apellidos
+            $funcionarioName = Funcionario::where('nombre', $nombres_[0])
+                ->where('apellido_paterno', $nombres_[1])
+                ->where('apellido_materno', $nombres_[2])
+                ->first();
+
+            // Obtener la oficina relacionada con el funcionario
+            $oficinaName = Oficinas::find($funcionarioName->oficina);
+
+            if (isset($funcionarioName) && isset($oficinaName)) {
                 $this->cargo = $funcionarioName->cargo;
                 $this->oficina_user = $oficinaName->nombre_oficina;
                 $this->name_sede = $oficinaName->sede->nombre_sede;
                 $this->piso = $oficinaName->piso;
-                $this->fecha_y_hora = Carbon::now()->toDateTimeString();;
+                $this->fecha_y_hora = Carbon::now()->toDateTimeString();
+                $this->funcionarioId = $funcionarioName->id; // Agregar esta línea para establecer el ID del funcionario
             } else {
                 throw new Exception('Error-1');
             }
@@ -138,17 +145,20 @@ class RegistrarVisita2 extends Component
                 $this->piso = '';
                 $this->name_sede = '';
                 $this->oficina_user = '';
-		$this->getUsers();
+                $this->funcionarioId = null; // Agregar esta línea para limpiar el ID del funcionario si no se encuentra
+                $this->getUsers();
             } else {
                 $this->cargo = '';
-                $this->addError('funcionario', 'El funcionario ingresada no existe');
+                $this->addError('funcionario', 'El funcionario ingresado no existe');
                 $this->piso = '';
                 $this->name_sede = '';
                 $this->oficina_user = '';
+                $this->funcionarioId = null; // Agregar esta línea para limpiar el ID del funcionario si no se encuentra
                 $this->addError('oficina', 'La oficina ingresada no existe');
             }
         }
     }
+
     public function render()
     {
         return view('livewire.registrar-visita2');
@@ -161,7 +171,7 @@ class RegistrarVisita2 extends Component
 
     public function updatedFuncionarioId()
     {
-        $this->funcionario = Funcionario::find($this->funcionarioId);
+        $this->FuncionarioId = Funcionario::find($this->funcionarioId);
     }
 
     public function updatedName()

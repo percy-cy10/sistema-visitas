@@ -48,7 +48,7 @@ class FuncionarioController extends Controller
             'cargo.unique' => 'El cargo ya existe en la base de datos.', // Mensaje personalizado para la regla "unique"
             'oficina.required' => 'El campo Oficina es obligatorio.',
         ]);
-        
+
         $funcionarios = new Funcionario();
         $funcionarios->dni = $request->input('dni');
         $funcionarios->nombre = $request->input('nombre');
@@ -56,14 +56,14 @@ class FuncionarioController extends Controller
         $funcionarios->apellido_materno = $request->input('apellido_materno');
         $funcionarios->cargo = $request->input('cargo');
         $funcionarios->oficina = $request->input('oficina');
-    
+
         if($funcionarios->save()){
             return redirect()->route('agregar-funcionario.index')->with('message', 'Se registró exitosamente el funcionario.');
         } else {
             return redirect()->route('agregar-funcionario.index')->with('error', 'Ocurrió un error al registrar el funcionario.');
         }
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -99,7 +99,7 @@ class FuncionarioController extends Controller
             'nombre' => 'required',
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
-            'cargo' => 'required|unique:funcionario,cargo,' . $funcionario->id, // Excluir el funcionario actual de la regla "unique"
+            'cargo' => 'required|unique:funcionario,cargo,' . $funcionario->id,
             'oficina' => 'required',
         ], [
             'nombre.required' => 'El campo Nombre es obligatorio.',
@@ -109,7 +109,9 @@ class FuncionarioController extends Controller
             'cargo.unique' => 'El cargo ya existe en la base de datos.',
             'oficina.required' => 'El campo Oficina es obligatorio.',
         ]);
-        $funcionario->dni->$request->input('dni');
+
+        // Actualizar solo los campos que han sido modificados
+        $funcionario->dni = $request->filled('dni') ? $request->input('dni') : $funcionario->dni;
         $funcionario->nombre = $request->input('nombre');
         $funcionario->apellido_paterno = $request->input('apellido_paterno');
         $funcionario->apellido_materno = $request->input('apellido_materno');
@@ -122,6 +124,8 @@ class FuncionarioController extends Controller
             return redirect()->route('agregar-funcionario.index')->with('error', 'Ocurrió un error al actualizar el funcionario.');
         }
     }
+
+
 
     /**
      * Remove the specified resource from storage.

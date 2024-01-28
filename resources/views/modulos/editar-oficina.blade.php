@@ -63,11 +63,11 @@
                     @endif
                     <form class="" method="POST" action="{{ route('agregar-oficina.update', $oficina->id) }}">
                         @csrf
-                        @method('put') 
+                        @method('put')
                         <div class="grid gap-6 mb-6 md:grid-cols-3 ">
                         <div>
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="oficina">
-                                    APELLIDO MATERNO:
+                                    NOMBRE DE OFICINA:
                                 </label>
                                 <input type="text" id="oficina" class="block appearance-none w-full bg-gray-200 border border-black-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ingrese la Oficina" name="oficina" value="{{ $oficina->nombre_oficina }}" required>
@@ -114,7 +114,7 @@
                 </form>
 
 
-                      
+
                 </div>
             </div>
         </div>
