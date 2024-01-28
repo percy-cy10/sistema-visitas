@@ -7,7 +7,7 @@ This is a Laravel application for managing visits to a registry. It allows users
 1. Clone the repository to your local machine:
 
     ```
-    git clone https://github.com/miltonjq/REGISTRO-DE-VISITAS.git
+    git clone https://github.com/percy-cy10/sistema-visitas.git
     ```
 
 2. Navigate to the project directory:
